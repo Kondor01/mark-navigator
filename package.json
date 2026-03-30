@@ -1,0 +1,78 @@
+{
+  "name": "sql-navigator",
+  "displayName": "SQL Navigator",
+  "description": "Показывает пользовательские метки в SQL и позволяет переходить по ним",
+  "version": "0.1.3",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onView:sqlNavigator",
+    "onLanguage:sql",
+    "onCommand:sql-navigator.goToLine",
+    "onCommand:sql-navigator.insertComment"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "SQL Navigator",
+      "properties": {
+        "sqlNavigator.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Включить/выключить расширение"
+        },
+        "sqlNavigator.commentPatterns": {
+          "type": "array",
+          "default": [
+            "--*"
+          ],
+          "description": "Список шаблонов меток для поиска (например: --*, lgLog, --?)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "sqlNavigator",
+          "name": "SQL Метки"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "sql-navigator.goToLine",
+        "title": "Перейти к метке"
+      },
+      {
+        "command": "sql-navigator.insertComment",
+        "title": "Вставить метку (--*)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sql-navigator.insertComment",
+        "key": "ctrl+p",
+        "when": "editorTextFocus && resourceExtname == '.sql'"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "prepublishOnly": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.15.0"
+  }
+}

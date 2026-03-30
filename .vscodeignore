@@ -1,0 +1,32 @@
+# Исключаем исходники TypeScript
+src
+
+# Исключаем конфигурацию TypeScript
+tsconfig.json
+
+# Исключаем dev-зависимости (если не используются напрямую)
+node_modules
+
+# Исключаем тесты, если есть
+__tests__
+*.spec.ts
+*.test.ts
+
+# Исключаем git
+.git
+.gitignore
+
+# Исключаем IDE-файлы
+.vscode
+*.vscode*
+
+# Исключаем артефакты сборки вне папки out
+dist
+build
+
+# Но обязательно оставляем скомпилированный код
+!out/
+!out/**/*.js
+!out/**/*.js.map
+
+asd.sql
